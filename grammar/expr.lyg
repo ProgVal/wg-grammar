@@ -1,6 +1,5 @@
 Expr = attrs:OuterAttr* kind:ExprKind;
 ExprKind =
-  | Literal:LITERAL
   | Paren:{ "(" attrs:InnerAttr* expr:Expr ")" }
   | Borrow:{ "&" mutable:"mut"? expr:Expr }
   | Box:{ "box" expr:Expr }
@@ -46,6 +45,7 @@ ExprKind =
       "|" args:ClosureArg* %% "," "|" { "->" ret_ty:Type }? body:Expr
     }
   | MacroCall:MacroCall
+  | Literal:LITERAL
   ;
 
 UnaryOp =
